@@ -1,0 +1,105 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Lenovo\\source\\repos\\ClinicManagementSystem\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E72DB9F4-8761-4A41-9621-FAB6A5D5E58E}|..\\ClinicManagementSystem.ServiceTests\\ClinicManagementSystem.ServiceTests.csproj|c:\\users\\lenovo\\source\\repos\\clinicmanagementsystem.servicetests\\emailservicetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4E32D9A6-BAA2-075B-7C3E-297E2D5391CF}|..\\ClinicManagementSystem.Infrastructure\\ClinicManagementSystem.Infrastructure.csproj|c:\\users\\lenovo\\source\\repos\\clinicmanagementsystem.infrastructure\\services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D90237B0-35B6-FED6-B7B3-908140A5EEA0}|..\\ClinicManagementSystem.Core\\ClinicManagementSystem.Core.csproj|c:\\users\\lenovo\\source\\repos\\clinicmanagementsystem.core\\interfaces\\iemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E72DB9F4-8761-4A41-9621-FAB6A5D5E58E}|..\\ClinicManagementSystem.ServiceTests\\ClinicManagementSystem.ServiceTests.csproj|c:\\users\\lenovo\\source\\repos\\clinicmanagementsystem.servicetests\\doctorservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{92FE87FD-B0AB-C53C-210D-F2EA6DA48ED5}|ClinicManagementSystem.UI.csproj|c:\\users\\lenovo\\source\\repos\\clinicmanagementsystem\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{92FE87FD-B0AB-C53C-210D-F2EA6DA48ED5}|ClinicManagementSystem.UI.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EmailService.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\ClinicManagementSystem.Infrastructure\\Services\\EmailService.cs",
+              "RelativeDocumentMoniker": "..\\ClinicManagementSystem.Infrastructure\\Services\\EmailService.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\ClinicManagementSystem.Infrastructure\\Services\\EmailService.cs",
+              "RelativeToolTip": "..\\ClinicManagementSystem.Infrastructure\\Services\\EmailService.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAowCAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-14T05:09:45.076Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "EmailServiceTest.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\ClinicManagementSystem.ServiceTests\\EmailServiceTest.cs",
+              "RelativeDocumentMoniker": "..\\ClinicManagementSystem.ServiceTests\\EmailServiceTest.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\ClinicManagementSystem.ServiceTests\\EmailServiceTest.cs",
+              "RelativeToolTip": "..\\ClinicManagementSystem.ServiceTests\\EmailServiceTest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-14T05:09:09.296Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IEmailService.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\ClinicManagementSystem.Core\\Interfaces\\IEmailService.cs",
+              "RelativeDocumentMoniker": "..\\ClinicManagementSystem.Core\\Interfaces\\IEmailService.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\ClinicManagementSystem.Core\\Interfaces\\IEmailService.cs",
+              "RelativeToolTip": "..\\ClinicManagementSystem.Core\\Interfaces\\IEmailService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-14T05:08:40.437Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DoctorServiceTests.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\ClinicManagementSystem.ServiceTests\\DoctorServiceTests.cs",
+              "RelativeDocumentMoniker": "..\\ClinicManagementSystem.ServiceTests\\DoctorServiceTests.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\ClinicManagementSystem.ServiceTests\\DoctorServiceTests.cs",
+              "RelativeToolTip": "..\\ClinicManagementSystem.ServiceTests\\DoctorServiceTests.cs",
+              "ViewState": "AgIAAMsAAAAAAAAAAAAAAAgAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-14T05:06:09.165Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\ClinicManagementSystem\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\ClinicManagementSystem\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAE4AAAAAAAAAAMBVwFAAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-13T11:28:22.89Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

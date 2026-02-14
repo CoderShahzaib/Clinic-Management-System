@@ -1,0 +1,21 @@
+2026-02-14T05:05:15.9560073+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Version: 1.9.1+cb5afc3bb9bb01ebd75b57f89e8358b914ee2a49
+2026-02-14T05:05:15.9635995+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging mode: asynchronous
+2026-02-14T05:05:15.9641831+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging level: Information
+2026-02-14T05:05:15.9641866+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION CreateBuilderAsync entry time: 05:05:15.940
+2026-02-14T05:05:15.9642340+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION PID: 10876
+2026-02-14T05:05:15.9642550+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime information: win-x64 - .NET 10.0.3
+2026-02-14T05:05:15.9642662+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\10.0.3\System.Private.CoreLib.dll
+2026-02-14T05:05:15.9642731+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION IsDynamicCodeSupported: True
+2026-02-14T05:05:15.9643332+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Test module: C:\Users\Lenovo\source\repos\ClinicManagementSystem.ControllerTests\bin\Debug\net10.0\ClinicManagementSystem.ControllerTests.dll
+2026-02-14T05:05:15.9644271+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Command line arguments: '--server --diagnostic --diagnostic-verbosity Information --diagnostic-output-directory C:\Users\Lenovo\source\repos\ClinicManagementSystem.ControllerTests\bin\Debug\net10.0\Log --results-directory C:\Users\Lenovo\source\repos\ClinicManagementSystem\TestResults --client-port 1709'
+2026-02-14T05:05:15.9649294+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION TESTINGPLATFORM_DEFAULT_HANG_TIMEOUT: ''
+2026-02-14T05:05:15.9768809+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting RegisterEnvironmentVariablesConfigurationSource: 'True'
+2026-02-14T05:05:15.9857277+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting PlatformExitProcessOnUnhandledException: 'False', config file: False environment variable: 
+2026-02-14T05:05:16.1473911+00:00 Microsoft.Testing.Platform.Requests.TestHostTestFrameworkInvoker INFORMATION Test framework UID: '30ea7c6e-dd24-4152-a360-1387158cd41d' Version: '3.2.2' DisplayName: 'xUnit.net v3 Microsoft.Testing.Platform test framework' Description: 'xUnit.net v3 Microsoft.Testing.Platform test framework'
+2026-02-14T05:05:16.1539495+00:00 xUnit.net INFORMATION xUnit.net v3 In-Process Runner v3.2.2+728c1dce01 (64-bit .NET 10.0.3)
+2026-02-14T05:05:16.1892810+00:00 xUnit.net INFORMATION   Discovering: ClinicManagementSystem.ControllerTests
+2026-02-14T05:05:16.2183834+00:00 xUnit.net INFORMATION   Discovered:  ClinicManagementSystem.ControllerTests
+2026-02-14T05:05:16.2351041+00:00 xUnit.net INFORMATION   Starting:    ClinicManagementSystem.ControllerTests
+2026-02-14T05:05:16.4892237+00:00 xUnit.net INFORMATION   Finished:    ClinicManagementSystem.ControllerTests (ID = '2c58eccc834de9b6da9bbd216a4cfa28b2068ff9b4c7d5453b6be4c8efed36ba')
+2026-02-14T05:05:16.4923711+00:00 xUnit.net INFORMATION === TEST EXECUTION SUMMARY ===
+2026-02-14T05:05:16.4952488+00:00 xUnit.net INFORMATION    ClinicManagementSystem.ControllerTests  Total: 26, Errors: 0, Failed: 0, Skipped: 0, Not Run: 0, Time: 0.259s

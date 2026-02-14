@@ -1,0 +1,79 @@
+﻿@model ClinicManagementSystem.Core.DTOs.LoginDTO
+
+<div class="flex min-h-screen items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100 p-4">
+    <div class="w-full max-w-md rounded-2xl bg-white p-8 shadow-xl">
+
+        <!-- Icon -->
+        <div class="mb-4 flex justify-center">
+            <div class="flex h-14 w-14 items-center justify-center rounded-full bg-blue-600 text-2xl text-white">
+                <i class="fa-solid fa-hospital-user"></i>
+            </div>
+        </div>
+
+        <!-- Title -->
+        <h2 class="text-center text-2xl font-bold text-gray-800">Clinic Portal</h2>
+        <p class="mb-6 text-center text-gray-500">Sign in to your account</p>
+
+        <!-- Login Form -->
+        <form asp-action="Login" asp-controller="Account" method="post">
+
+            <!-- Validation Summary -->
+            <div asp-validation-summary="ModelOnly"
+                 class="mb-4 rounded-lg bg-red-50 px-4 py-2 text-sm text-red-600">
+            </div>
+
+            <!-- Email -->
+            <div class="mb-4">
+                <label class="mb-1 block font-medium text-gray-700">Email</label>
+                <input asp-for="Email"
+                       type="email"
+                       placeholder="your@email.com"
+                       class="w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+                <span asp-validation-for="Email"
+                      class="mt-1 block text-sm text-red-600"></span>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-6">
+                <label class="mb-1 block font-medium text-gray-700">Password</label>
+                <input asp-for="Password"
+                       type="password"
+                       placeholder="********"
+                       class="w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+                <span asp-validation-for="Password"
+                      class="mt-1 block text-sm text-red-600"></span>
+            </div>
+
+            <!-- Forgot Password -->
+            <div class="mb-4 text-right">
+                <a asp-action="ForgotPassword"
+                   asp-controller="Account"
+                   class="text-sm font-medium text-blue-600 hover:underline">
+                    Forgot Password?
+                </a>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit"
+                    class="w-full rounded-lg bg-blue-600 py-2 font-semibold text-white transition hover:bg-blue-700">
+                Sign In
+            </button>
+
+        </form>
+
+        <!-- Register Link -->
+        <p class="mt-4 text-center text-sm text-gray-600">
+            Don't have an account?
+            <a asp-action="Register"
+               asp-controller="Account"
+               class="font-semibold text-blue-600 hover:underline">
+                Register
+            </a>
+        </p>
+
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

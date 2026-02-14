@@ -1,0 +1,186 @@
+﻿@model ClinicManagementSystem.UI.ViewModel.PatientDashboardViewModel
+@using ClinicManagementSystem.Core.DTOs
+@using ClinicManagementSystem.Core.Enums
+
+<partial name="~/Views/Shared/Partials/_Header.cshtml" />
+
+<main class="mx-auto max-w-6xl p-6">
+
+    <button type="button"
+            onclick="openModal()"
+            class="mb-6 flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-2 text-white shadow hover:bg-blue-700">
+        <i class="fa-solid fa-calendar-plus"></i>
+        Book New Appointment
+    </button>
+
+    <h2 class="mb-4 text-xl font-semibold">My Appointments</h2>
+
+    @if (!Model.Appointments.Any())
+    {
+        <p class="text-gray-500">No appointments found.</p>
+    }
+    else
+    {
+        @foreach (var appointment in Model.Appointments)
+        {
+            <div class="mb-4 rounded-xl border bg-white p-5 shadow">
+                <div class="flex justify-between">
+
+                    <div>
+                        <p class="font-semibold">
+                            <i class="fa-solid fa-user-doctor"></i>
+                            Dr. @appointment.PersonName
+                        </p>
+
+                        <p class="text-sm text-gray-500">
+                            <i class="fa-solid fa-calendar-days"></i>
+                            @appointment.Date
+                            &nbsp;
+                            <i class="fa-solid fa-clock"></i>
+                            @appointment.Time
+                        </p>
+
+                        <p class="mt-2 text-sm">Reason:</p>
+                        <p class="font-medium">@appointment.Reason</p>
+
+                        @if (appointment.Status == AppointmentStatus.Pending)
+                        {
+                            <form asp-action="CancelAppointment"
+                                  method="post"
+                                  class="mt-2">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="appointmentId" value="@appointment.Id" />
+                                <button class="flex items-center gap-1 text-sm text-red-600 hover:underline">
+                                    <i class="fa-solid fa-xmark"></i>
+                                    Cancel Appointment
+                                </button>
+                            </form>
+                        }
+                        else if (appointment.Status == AppointmentStatus.Completed)
+                        {
+                            <form asp-action="DeleteAppointment"
+                                  method="post"
+                                  class="mt-2">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="appointmentId" value="@appointment.Id" />
+                                <button class="flex items-center gap-1 text-sm text-red-600 hover:underline">
+                                    <i class="fa-solid fa-trash"></i>
+                                    Delete Appointment
+                                </button>
+                            </form>
+                        }
+                </div>
+
+                <span class="h-fit rounded-full px-3 py-1 text-sm
+                                    @(appointment.Status == AppointmentStatus.Completed
+                                                            ? "bg-green-100 text-green-700"
+                                                            : appointment.Status == AppointmentStatus.Pending
+                                                                ? "bg-blue-100 text-blue-700"
+                                                                : "bg-red-100 text-red-700")">
+                        @appointment.Status
+                    </span>
+
+                </div>
+            </div>
+        }
+    }
+</main>
+
+<div id="appointmentModal"
+     class="fixed inset-0 z-50 hidden items-center justify-center bg-black/40 p-5">
+
+    <div class="relative max-h-[90vh] w-full max-w-xl overflow-auto rounded-2xl bg-white p-8 shadow-xl">
+
+        <button type="button"
+                onclick="closeModal()"
+                class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+            <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+
+        <h2 class="mb-6 text-2xl font-semibold text-gray-900">
+            Book Appointment
+        </h2>
+
+        <form asp-action="BookAppointment"
+              asp-controller="Patient"
+              method="post"
+              class="space-y-5">
+
+            <div>
+                <label class="mb-2 block text-sm font-medium text-gray-700">
+                    Your Name
+                </label>
+                <input asp-for="NewAppointment.PersonName"
+                       class="w-full rounded-xl border px-4 py-3 focus:ring-2 focus:ring-blue-500" />
+                <span asp-validation-for="NewAppointment.PersonName"
+                      class="text-sm text-red-500"></span>
+            </div>
+
+            <div>
+                <label class="mb-2 block text-sm font-medium text-gray-700">
+                    Select Doctor
+                </label>
+                <select asp-for="NewAppointment.DoctorId"
+                        class="w-full rounded-xl border px-4 py-3">
+                    <option value="">Choose a doctor</option>
+                    @foreach (var doctor in Model.NewAppointment.AvailableDoctors)
+                    {
+                        <option value="@doctor.Id">
+                            @doctor.Name (@doctor.Specialization)
+                        </option>
+                    }
+                </select>
+                <span asp-validation-for="NewAppointment.DoctorId"
+                      class="text-sm text-red-500"></span>
+            </div>
+
+            <div>
+                <label class="mb-2 block text-sm font-medium text-gray-700">
+                    Date
+                </label>
+                <input asp-for="NewAppointment.Date"
+                       type="date"
+                       class="w-full rounded-xl border px-4 py-3" />
+                <span asp-validation-for="NewAppointment.Date"
+                      class="text-sm text-red-500"></span>
+            </div>
+
+            <div>
+                <label class="mb-2 block text-sm font-medium text-gray-700">
+                    Time
+                </label>
+                <input asp-for="NewAppointment.Time"
+                       type="time"
+                       class="w-full rounded-xl border px-4 py-3" />
+                <span asp-validation-for="NewAppointment.Time"
+                      class="text-sm text-red-500"></span>
+            </div>
+
+            <div>
+                <label class="mb-2 block text-sm font-medium text-gray-700">
+                    Reason for Visit
+                </label>
+                <textarea asp-for="NewAppointment.Reason"
+                          rows="4"
+                          class="w-full resize-none rounded-xl border px-4 py-3"></textarea>
+                <span asp-validation-for="NewAppointment.Reason"
+                      class="text-sm text-red-500"></span>
+            </div>
+
+            <div class="flex justify-end gap-4 pt-4">
+                <button type="button"
+                        onclick="closeModal()"
+                        class="rounded-xl border px-6 py-3 text-gray-700">
+                    Cancel
+                </button>
+
+                <button type="submit"
+                        class="flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 text-white hover:bg-blue-700">
+                    <i class="fa-solid fa-check"></i>
+                    Book Appointment
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>

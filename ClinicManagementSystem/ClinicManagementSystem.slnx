@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="../ClinicManagementSystem.Core/ClinicManagementSystem.Core.csproj" />
+    <Project Path="../ClinicManagementSystem.Infrastructure/ClinicManagementSystem.Infrastructure.csproj" />
+    <Project Path="ClinicManagementSystem.UI.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="../ClinicManagementSystem.ControllerTests/ClinicManagementSystem.ControllerTests.csproj" Id="76430278-e1a2-41cd-907a-dc82dfc04d63" />
+    <Project Path="../ClinicManagementSystem.ServiceTests/ClinicManagementSystem.ServiceTests.csproj" Id="e72db9f4-8761-4a41-9621-fab6a5d5e58e" />
+  </Folder>
+</Solution>

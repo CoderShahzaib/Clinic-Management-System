@@ -1,0 +1,194 @@
+﻿@model ClinicManagementSystem.UI.ViewModels.DoctorDashboardViewModel
+@using ClinicManagementSystem.Core.Enums
+@using System.Globalization
+
+<partial name="~/Views/Shared/Partials/_Header.cshtml" />
+
+@{
+    var today = DateTime.Today;
+
+    Func<string, DateTime?> parseDateSafe = d =>
+    {
+        if (DateTime.TryParseExact(d, "yyyy-MM-dd", CultureInfo.InvariantCulture,
+                                   DateTimeStyles.None, out var dt))
+            return dt;
+        return null;
+    };
+
+    var todaysAppointments = Model.Appointments
+                                 .Where(a => parseDateSafe(a.Date)?.Date == today)
+                                 .ToList();
+}
+
+<div class="px-6 py-6">
+
+    <!-- TOP STATS -->
+    <div class="mb-8 grid grid-cols-1 gap-6 md:grid-cols-3">
+
+        <div class="flex items-center gap-4 rounded-xl bg-white p-6 shadow-sm">
+            <div class="rounded-lg bg-blue-100 p-3 text-blue-600">
+                <i class="fa-solid fa-calendar-days"></i>
+            </div>
+            <div>
+                <p class="text-sm text-gray-500">Today's Appointments</p>
+                <p class="text-3xl font-semibold">@todaysAppointments.Count</p>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-4 rounded-xl bg-white p-6 shadow-sm">
+            <div class="rounded-lg bg-green-100 p-3 text-green-600">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <div>
+                <p class="text-sm text-gray-500">Completed Today</p>
+                <p class="text-3xl font-semibold">
+                    @todaysAppointments.Count(a => a.Status == AppointmentStatus.Completed)
+                </p>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-4 rounded-xl bg-white p-6 shadow-sm">
+            <div class="rounded-lg bg-yellow-100 p-3 text-yellow-600">
+                <i class="fa-solid fa-clock"></i>
+            </div>
+            <div>
+                <p class="text-sm text-gray-500">Pending Today</p>
+                <p class="text-3xl font-semibold">
+                    @todaysAppointments.Count(a => a.Status == AppointmentStatus.Pending)
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- TABS -->
+    <div class="mb-6 border-b border-gray-200">
+        <nav class="flex gap-8 text-sm font-medium">
+            <button id="todayTab" onclick="showTodayAppointments()" class="border-b-2 border-green-600 text-green-600">
+                Today's Appointments
+            </button>
+            <button id="allTab" onclick="showAllAppointments()" class="border-b-2 border-transparent text-gray-500">
+                All Appointments
+            </button>
+        </nav>
+    </div>
+
+    <!-- TODAY SECTION -->
+    <div id="todaySection">
+        @if (!todaysAppointments.Any())
+        {
+            <div class="mb-10 rounded-xl bg-white p-16 text-center shadow-sm">
+                <div class="mb-4 text-6xl text-gray-400">
+                    <i class="fa-solid fa-calendar-xmark"></i>
+                </div>
+                <p class="text-gray-500">No appointments scheduled for today</p>
+            </div>
+        }
+        else
+        {
+            @foreach (var appointment in todaysAppointments)
+            {
+                <div class="mb-6 rounded-xl bg-white p-6 shadow-sm">
+                    <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">
+                                <i class="fa-solid fa-user"></i>
+                                @appointment.PersonName
+                            </h3>
+
+                            <div class="mt-2 flex items-center gap-6 text-sm text-gray-500">
+                                <span>
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                    @appointment.Date
+                                </span>
+                                <span>
+                                    <i class="fa-solid fa-clock"></i>
+                                    @appointment.Time
+                                </span>
+                            </div>
+
+                            <p class="mt-4 text-sm text-gray-500">Reason for Visit:</p>
+                            <p class="font-medium text-gray-800">@appointment.Reason</p>
+                        </div>
+
+                        <div class="flex flex-col items-end gap-4">
+                            <span class="rounded-full px-3 py-1 text-xs font-medium
+                                                @(appointment.Status == AppointmentStatus.Completed
+                                                                                ? "bg-green-100 text-green-700"
+                                                                                : "bg-blue-100 text-blue-700")">
+                                @appointment.Status
+                            </span>
+
+                            @if (appointment.Status == AppointmentStatus.Pending)
+                            {
+                                <div class="flex gap-3">
+                                    <form asp-action="CompleteAppointment" method="post">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="appointmentId" value="@appointment.Id" />
+                                        <button type="submit"
+                                                class="rounded-lg bg-green-600 px-5 py-2 text-sm font-medium text-white hover:bg-green-700">
+                                            <i class="fa-solid fa-check"></i>
+                                            Mark as Completed
+                                        </button>
+                                    </form>
+
+                                    <button type="button"
+                                            onclick="openModal('@appointment.Id')"
+                                            class="rounded-lg border border-gray-300 px-5 py-2 text-sm hover:bg-gray-100">
+                                        <i class="fa-solid fa-pen"></i>
+                                        Add Notes
+                                    </button>
+                                </div>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+            }
+        }
+    </div>
+
+    <!-- ALL SECTION -->
+    <div id="allSection" class="hidden">
+        @foreach (var appointment in Model.Appointments)
+        {
+            <div class="mb-6 rounded-xl bg-white p-6 shadow-sm">
+                <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900">
+                            <i class="fa-solid fa-user"></i>
+                            @appointment.PersonName
+                        </h3>
+
+                        <div class="mt-2 flex items-center gap-6 text-sm text-gray-500">
+                            <span>
+                                <i class="fa-solid fa-calendar-days"></i>
+                                @appointment.Date
+                            </span>
+                            <span>
+                                <i class="fa-solid fa-clock"></i>
+                                @appointment.Time
+                            </span>
+                        </div>
+
+                        <p class="mt-4 text-sm text-gray-500">Reason for Visit:</p>
+                        <p class="font-medium text-gray-800">@appointment.Reason</p>
+                    </div>
+
+                    <div class="flex flex-col items-end gap-4">
+                        <span class="rounded-full px-3 py-1 text-xs font-medium
+                                    @(appointment.Status == AppointmentStatus.Completed
+                                                                    ? "bg-green-100 text-green-700"
+                                                                    : "bg-blue-100 text-blue-700")">
+                            @appointment.Status
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+
+</div>

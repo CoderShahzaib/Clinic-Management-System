@@ -1,0 +1,27 @@
+2026-02-13T16:03:26.4925849+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Version: 1.9.1+cb5afc3bb9bb01ebd75b57f89e8358b914ee2a49
+2026-02-13T16:03:26.5111631+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging mode: asynchronous
+2026-02-13T16:03:26.5134512+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Logging level: Information
+2026-02-13T16:03:26.5134657+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION CreateBuilderAsync entry time: 16:03:26.464
+2026-02-13T16:03:26.5136103+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION PID: 8244
+2026-02-13T16:03:26.5136796+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime information: win-x64 - .NET 10.0.2
+2026-02-13T16:03:26.5137179+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Runtime location: C:\Program Files\dotnet\shared\Microsoft.NETCore.App\10.0.2\System.Private.CoreLib.dll
+2026-02-13T16:03:26.5137378+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION IsDynamicCodeSupported: True
+2026-02-13T16:03:26.5138727+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Test module: C:\Users\Lenovo\source\repos\ClinicManagementSystem.ControllerTests\bin\Debug\net10.0\ClinicManagementSystem.ControllerTests.dll
+2026-02-13T16:03:26.5141361+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION Command line arguments: '--server --diagnostic --diagnostic-verbosity Information --diagnostic-output-directory C:\Users\Lenovo\source\repos\ClinicManagementSystem.ControllerTests\bin\Debug\net10.0\Log --results-directory C:\Users\Lenovo\source\repos\ClinicManagementSystem\TestResults --client-port 12311'
+2026-02-13T16:03:26.5165275+00:00 Microsoft.Testing.Platform.Builder.TestApplication INFORMATION TESTINGPLATFORM_DEFAULT_HANG_TIMEOUT: ''
+2026-02-13T16:03:26.5478103+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting RegisterEnvironmentVariablesConfigurationSource: 'True'
+2026-02-13T16:03:26.5623261+00:00 Microsoft.Testing.Platform.Hosts.TestHostBuilder INFORMATION Setting PlatformExitProcessOnUnhandledException: 'False', config file: False environment variable: 
+2026-02-13T16:03:26.8689118+00:00 Microsoft.Testing.Platform.Requests.TestHostTestFrameworkInvoker INFORMATION Test framework UID: '30ea7c6e-dd24-4152-a360-1387158cd41d' Version: '3.2.2' DisplayName: 'xUnit.net v3 Microsoft.Testing.Platform test framework' Description: 'xUnit.net v3 Microsoft.Testing.Platform test framework'
+2026-02-13T16:03:26.8778047+00:00 xUnit.net INFORMATION xUnit.net v3 In-Process Runner v3.2.2+728c1dce01 (64-bit .NET 10.0.2)
+2026-02-13T16:03:26.9298346+00:00 xUnit.net INFORMATION   Discovering: ClinicManagementSystem.ControllerTests
+2026-02-13T16:03:26.9763598+00:00 xUnit.net INFORMATION   Discovered:  ClinicManagementSystem.ControllerTests
+2026-02-13T16:03:27.0156045+00:00 xUnit.net INFORMATION   Starting:    ClinicManagementSystem.ControllerTests
+2026-02-13T16:03:27.4105046+00:00 xUnit.net ERROR     ClinicManagementSystem.ControllerTests.AdminControllerTests.AddDoctor_Success_RedirectsToDashboard [FAIL]
+2026-02-13T16:03:27.4109482+00:00 xUnit.net INFORMATION       System.NullReferenceException : Object reference not set to an instance of an object.
+2026-02-13T16:03:27.4112453+00:00 xUnit.net INFORMATION       Stack Trace:
+2026-02-13T16:03:27.4119629+00:00 xUnit.net INFORMATION         C:\Users\Lenovo\source\repos\ClinicManagementSystem\Controllers\AdminController.cs(90,0): at ClinicManagementSystem.UI.Controllers.AdminController.AddDoctor(DoctorRequestDTO model)
+2026-02-13T16:03:27.4119899+00:00 xUnit.net INFORMATION         C:\Users\Lenovo\source\repos\ClinicManagementSystem.ControllerTests\AdminControllerTest.cs(151,0): at ClinicManagementSystem.ControllerTests.AdminControllerTests.AddDoctor_Success_RedirectsToDashboard()
+2026-02-13T16:03:27.4119940+00:00 xUnit.net INFORMATION         --- End of stack trace from previous location ---
+2026-02-13T16:03:27.4379367+00:00 xUnit.net INFORMATION   Finished:    ClinicManagementSystem.ControllerTests (ID = '2c58eccc834de9b6da9bbd216a4cfa28b2068ff9b4c7d5453b6be4c8efed36ba')
+2026-02-13T16:03:27.4427521+00:00 xUnit.net INFORMATION === TEST EXECUTION SUMMARY ===
+2026-02-13T16:03:27.4472103+00:00 xUnit.net INFORMATION    ClinicManagementSystem.ControllerTests  Total: 26, Errors: 0, Failed: 1, Skipped: 0, Not Run: 0, Time: 0.435s

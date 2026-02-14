@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+
+
+</head>
+<body class="min-h-screen">
+
+    <main>
+        @RenderBody()
+    </main>
+
+    <script src="~/js/site.js"></script>
+
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

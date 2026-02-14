@@ -1,0 +1,214 @@
+﻿@model ClinicManagementSystem.UI.ViewModel.AdminDashboardViewModel
+@using ClinicManagementSystem.Core.Enums
+
+<partial name="~/Views/Shared/Partials/_Header.cshtml" />
+
+<div class="mx-auto max-w-5xl px-6 py-8">
+
+    <div class="mb-6 flex gap-4 border-b">
+        <button onclick="showAppointments()"
+                id="appointmentsTab"
+                class="flex items-center gap-2 border-b-2 border-purple-600 px-4 py-2 font-medium text-purple-600">
+            <i class="fa-solid fa-calendar-days"></i>
+            Appointments
+        </button>
+
+        <button onclick="showDoctors()"
+                id="doctorsTab"
+                class="flex items-center gap-2 border-b-2 border-transparent px-4 py-2 text-gray-500 hover:text-gray-700">
+            <i class="fa-solid fa-user-doctor"></i>
+            Doctors
+        </button>
+    </div>
+
+    <div id="appointmentsSection">
+
+        <h2 class="mb-4 text-lg font-semibold">All Appointments</h2>
+
+        @if (!Model.Appointments.Any())
+        {
+            <p class="text-gray-500">No appointments found.</p>
+        }
+
+        @foreach (var appointment in Model.Appointments)
+        {
+            <div class="relative mb-4 rounded-lg border bg-white p-6 shadow-sm">
+
+                <span class="absolute top-4 right-4 rounded-full px-3 py-1 text-sm
+                                    @(appointment.Status == AppointmentStatus.Pending
+                                                            ? "bg-yellow-100 text-yellow-600"
+                                                            : appointment.Status == AppointmentStatus.Completed
+                                                                ? "bg-blue-100 text-blue-600"
+                                                                : "bg-green-100 text-green-600")">
+                    @appointment.Status
+                </span>
+
+                <p class="font-semibold">
+                    <i class="fa-solid fa-user"></i>
+                    @appointment.PersonName
+                </p>
+
+                <p class="text-sm text-gray-500">
+                    <i class="fa-solid fa-user-doctor"></i>
+                    Doctor name: @(appointment.DoctorName ?? "Doctor not assigned")
+                </p>
+
+                <p class="text-sm text-gray-500">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    @appointment.Date
+                    &nbsp;
+                    <i class="fa-solid fa-clock"></i>
+                    @appointment.Time
+                </p>
+
+                <p class="mt-3 text-sm font-medium">Reason:</p>
+                <p class="mb-4 text-sm text-gray-600">@appointment.Reason</p>
+
+                @if (appointment.Status == AppointmentStatus.Pending)
+                {
+                    <form asp-action="RemoveAppointment" method="post">
+                        <input type="hidden" name="appointmentId" value="@appointment.Id" />
+                        <button class="flex items-center gap-1 rounded bg-red-100 px-3 py-1.5 text-sm text-red-600 hover:bg-red-200">
+                            <i class="fa-solid fa-xmark"></i>
+                            Cancel
+                        </button>
+                    </form>
+                }
+                else if (appointment.Status == AppointmentStatus.Completed)
+                {
+                    <form asp-action="RemoveAppointment" method="post">
+                        <input type="hidden" name="appointmentId" value="@appointment.Id" />
+                        <button class="flex items-center gap-1 rounded bg-gray-100 px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-200">
+                            <i class="fa-solid fa-trash"></i>
+                            Delete Appointment
+                        </button>
+                    </form>
+                }
+
+            </div>
+        }
+    </div>
+
+    <div id="doctorsSection" class="hidden">
+
+        <div class="mb-6 flex items-center justify-between">
+            <h2 class="text-xl font-semibold">Manage Doctors</h2>
+            <button onclick="openModal()"
+                    class="flex items-center gap-2 rounded-lg bg-purple-600 px-4 py-2 text-white hover:bg-purple-700">
+                <i class="fa-solid fa-user-plus"></i>
+                Add Doctor
+            </button>
+        </div>
+
+        @if (TempData["DoctorPassword"] != null)
+        {
+            <div class="mb-4 rounded-lg border bg-yellow-50 p-4">
+                <p class="font-medium">New Doctor Password:</p>
+                <p class="text-sm text-gray-600">@TempData["DoctorPassword"]</p>
+            </div>
+        }
+
+        @if (!Model.Doctors.Any())
+        {
+            <p class="text-gray-500">No doctors found.</p>
+        }
+
+        @foreach (var doctor in Model.Doctors)
+        {
+            <div class="mb-4 flex items-center justify-between rounded-lg border bg-white p-6 shadow-sm">
+                <div>
+                    <p class="font-semibold">
+                        <i class="fa-solid fa-user-doctor"></i>
+                        @doctor.Name
+                    </p>
+                    <p class="mb-2 text-sm text-gray-500">@doctor.Specialization</p>
+
+                    <span class="rounded px-3 py-1 text-sm
+                                    @(doctor.IsAvailable
+                                                                ? "bg-green-100 text-green-600"
+                                                                : "bg-gray-100 text-gray-500")">
+                        @(doctor.IsAvailable ? "Available" : "Unavailable")
+                    </span>
+                </div>
+
+                <div class="flex gap-4">
+                    <form asp-action="Edit" method="post" class="flex gap-2">
+                        <input type="hidden" name="doctorId" value="@doctor.Id" />
+
+                        <select name="isAvailable" class="rounded border px-2 py-1">
+                            <option value="true" selected="@doctor.IsAvailable">Available</option>
+                            <option value="false" selected="@(doctor.IsAvailable == false)">Unavailable</option>
+                        </select>
+
+                        <button type="submit" class="rounded bg-purple-600 px-3 py-1 text-white">
+                            <i class="fa-solid fa-rotate"></i>
+                            Update
+                        </button>
+                    </form>
+
+                    <form asp-action="RemoveDoctor" method="post">
+                        <input type="hidden" name="doctorId" value="@doctor.Id" />
+                        <button class="text-red-600 hover:text-red-700">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div id="appointmentModal"
+     class="fixed inset-0 z-50 hidden items-center justify-center bg-black/40">
+
+    <div class="relative w-full max-w-md rounded-xl bg-white p-6">
+
+        <button onclick="closeModal()"
+                class="absolute top-4 right-4 text-xl text-gray-400 hover:text-gray-600">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <h3 class="mb-6 text-lg font-semibold">Add New Doctor</h3>
+
+        <form asp-action="AddDoctor" method="post">
+            @Html.AntiForgeryToken()
+
+            <div class="mb-4">
+                <label class="mb-1 block">Name</label>
+                <input name="Name" class="w-full rounded border px-2 py-1" />
+            </div>
+
+            <div class="mb-4">
+                <label class="mb-1 block">Email</label>
+                <input name="Email" type="email"
+                       class="w-full rounded border px-2 py-1" />
+            </div>
+
+            <div class="mb-4">
+                <label class="mb-1 block">Specialization</label>
+                <input name="Specialization"
+                       class="w-full rounded border px-2 py-1" />
+            </div>
+
+            <div class="mb-4 flex items-center gap-2">
+                <input type="checkbox"
+                       name="IsAvailable"
+                       value="true"
+                       class="accent-purple-600" />
+
+                <input type="hidden"
+                       name="IsAvailable"
+                       value="false" />
+
+                <label>Available for appointments</label>
+            </div>
+
+            <button type="submit"
+                    class="flex items-center gap-2 rounded bg-purple-600 px-4 py-2 text-white">
+                <i class="fa-solid fa-plus"></i>
+                Add Doctor
+            </button>
+        </form>
+
+    </div>
+</div>

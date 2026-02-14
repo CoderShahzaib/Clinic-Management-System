@@ -1,0 +1,53 @@
+﻿@model ClinicManagementSystem.Core.DTOs.RegisterDTO
+
+<div class="flex min-h-screen items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100 p-4">
+    <div class="w-full max-w-md rounded-2xl bg-white p-8 shadow-xl">
+
+        <h2 class="text-center text-2xl font-bold text-gray-800">Clinic Portal</h2>
+        <p class="mb-6 text-center text-gray-500">Create a new account</p>
+
+        <form asp-action="Register" asp-controller="Account" method="post">
+
+            <div class="mb-4">
+                <label class="block font-medium text-gray-700">Full Name</label>
+                <input asp-for="UserName" class="w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+                <span asp-validation-for="UserName" class="text-sm text-red-600"></span>
+            </div>
+
+            <div class="mb-4">
+                <label class="block font-medium text-gray-700">Register as</label>
+                <select asp-for="Role" class="w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                    <option value="">Select Role</option>
+                    <option value="Patient">Patient</option>
+                </select>
+                <span asp-validation-for="Role" class="text-sm text-red-600"></span>
+            </div>
+
+            <div class="mb-4">
+                <label class="block font-medium text-gray-700">Email</label>
+                <input asp-for="Email" type="email" class="w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+                <span asp-validation-for="Email" class="text-sm text-red-600"></span>
+            </div>
+
+            <div class="mb-6">
+                <label class="block font-medium text-gray-700">Password</label>
+                <input asp-for="Password" type="password" class="w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+                <span asp-validation-for="Password" class="text-sm text-red-600"></span>
+            </div>
+
+            <button type="submit" class="w-full rounded-lg bg-blue-600 py-2 font-semibold text-white hover:bg-blue-700">
+                Register
+            </button>
+
+        </form>
+
+        <p class="mt-4 text-center text-sm text-gray-600">
+            Already have an account? <a asp-action="Login" class="font-semibold text-blue-600 hover:underline">Sign In</a>
+        </p>
+
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
